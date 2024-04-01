@@ -3,11 +3,12 @@
 namespace DenizTezcan\LaravelPostNLAPI\Services;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
 use Throwable;
 
 class Client
 {
-    protected static $client;
+    protected static GuzzleClient $client;
 
     public function __construct()
     {
