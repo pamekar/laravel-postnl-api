@@ -77,28 +77,33 @@ class PostNLAPI
         $remark,
         $override_customer = null,
         $productOptions = null,
+        $dimension = [],
+        $customs = ''
     ) {
-        if($override_customer !== null)
-        {
+        if ($override_customer !== null) {
             $this->overrideCustomer($override_customer);
         }
 
         $client = new Client();
-        $data = Converter::Label(
+
+        $data = Converter::
+        Label(
             $this->customer,
             LabellingMessage::create([
                 'Printertype' => $printerType,
             ]),
             Shipments::create([
-                'Addresses'             => $address,
-                'Barcode'               => $barcode,
-                'Contacts'              => $contact,
-                'DeliveryAddress'       => $deliveryAddress,
-                'ProductCodeDelivery'   => $productCodeDelivery,
-                'Reference'             => $reference,
-                'Remark'                => $remark,
-                'Groups'                => null,
-                'ProductOptions'        => $productOptions,
+                'Addresses'           => $address,
+                'Barcode'             => $barcode,
+                'Contacts'            => $contact,
+                'DeliveryAddress'     => $deliveryAddress,
+                'ProductCodeDelivery' => $productCodeDelivery,
+                'Reference'           => $reference,
+                'Remark'              => $remark,
+                'Groups'              => null,
+                'ProductOptions'      => $productOptions,
+                'Dimension'           => $dimension,
+                'Customs'             => $customs
             ])
         );
 
@@ -165,9 +170,17 @@ class PostNLAPI
         $deliveryOptions = 'PG'
     ) {
         $client = new Client();
-        $locations = $client::get('shipment/v2_1/locations/nearest?CountryCode='.$countryCode.'&PostalCode='.$postalCode.'&DeliveryOptions='.$deliveryOptions, $this->customer);
+        $locations = $client::get('shipment/v2_1/locations/nearest?CountryCode='.$countryCode.'&PostalCode='.$postalCode.'&DeliveryOptions='
+            .$deliveryOptions, $this->customer);
 
         return $locations['GetLocationsResult']['ResponseLocation'];
+    }
+
+    public function status($barcode) {
+        $client = new Client();
+        $status = $client::get("shipment/v2/status/barcode/{$barcode}?detail=true&language=NL", $this->customer);
+
+        return $status;
     }
 
     public function checkout(

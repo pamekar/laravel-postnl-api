@@ -69,6 +69,8 @@ class Converter
         }
         $data->Shipments->ProductCodeDelivery = $shipments->getProductCodeDelivery();
         $data->Shipments->Reference = $shipments->getReference();
+        $data->Shipments->Dimension = $shipments->getDimension();
+        $data->Shipments->Customs = $shipments->getCustoms();
         $data->Shipments->Remark = $shipments->getRemark();
 
         return $data;
