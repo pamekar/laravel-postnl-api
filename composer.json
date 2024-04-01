@@ -1,5 +1,5 @@
 {
-    "name": "deniztezcan/laravel-postnl-api",
+    "name": "pamekar/laravel-postnl-api",
     "description": "Laravel PostNL API package",
     "type": "library",
     "license": "MIT",
