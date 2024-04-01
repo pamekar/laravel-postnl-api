@@ -54,7 +54,7 @@ class Client
 
             return self::handleResponse($response->getBody());
         } else {
-            throw new Throwable('PostNL not reporting 200 status', 1);
+            throw new \Exception('PostNL not reporting 200 status', 1);
         }
     }
 
@@ -72,10 +72,9 @@ class Client
 
         if ($response->getStatusCode() == 200) {
             self::initGuzzleClient();
-
             return self::handleResponse($response->getBody());
         } else {
-            throw new Throwable('PostNL not reporting 200 status', 1);
+            throw new \Exception('PostNL not reporting 200 status', 1);
         }
     }
 }
