@@ -178,7 +178,7 @@ class PostNLAPI
         $options = [],
         $locations = 2,
         $days = 5,
-        $address = [],
+        $address = []
     ) {
         $client = new Client();
 
@@ -196,7 +196,8 @@ class PostNLAPI
         try {
             $checkout = $client::post('shipment/v1/checkout', $data, $this->customer);
         } catch (\Exception $e) {
-            echo $e->getResponse()->getBody()->getContents();exit;
+            echo $e->getResponse()->getBody()->getContents();
+            exit;
         }
 
         $response = [

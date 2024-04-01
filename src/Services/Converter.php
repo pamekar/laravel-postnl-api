@@ -82,7 +82,7 @@ class Converter
         $options = [],
         $locations = 2,
         $days = 5,
-        $zaddress,
+        $zaddress
     ) {
         $data = new \stdClass();
         $data->OrderDate = $date;
