@@ -8,7 +8,7 @@ use Throwable;
 
 class Client
 {
-    protected static GuzzleClient $client;
+    protected static $client;
 
     public function __construct()
     {
